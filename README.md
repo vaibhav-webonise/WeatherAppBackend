@@ -19,38 +19,53 @@ Tools & Framework used:
 Dependencies:
 
 `1.Spring web`
+
 `2.PostgreSql driver`
+
 `3.Spring data JPA`
+
 `4.Spring Security`
 
 Prerequisites: 
 
 `Must have postgreSql database configured on the system`
-
 `Once you have it create application.properties file and add following lines in it,`
 
 `spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect`
+
 `spring.jpa.hibernate.ddl-auto = update`
+
 `spring.datasource.url=jdbc:postgresql://localhost:5432/{database_name}`
+
 `spring.datasource.username={username}`
+
 `spring.datasource.password={password}`
 
 Note:
 
 `Create database or use existing one`
+
 `To create new database type following command on your postgres console`
 	`CREATE DATABASE database_name;`
+	
 `5432 is the default port for postgreSql`
-`postgres is the default user if you are working with default user add postgres at the username property`
+
+`Postgres is the default user if you are working with default user add postgres at the username property`
+
 `Otherwise give proper username to this property`
+
 `If you have authenticated your postgeSql with password, Give valid password to the mentioned password property`
+
 `Copy path of your application.properties file and paste it into the WeatherApplication.java file`
 
 Installation: To run this app follow given steps,
 
 `1.Clone or download project directory`
+
 `2.Go to the directory and type`
+
 `3.mvn clean install`
+
 `4.mvn spring-boot:run`
 
 After follwing these all steps your application will be running on 

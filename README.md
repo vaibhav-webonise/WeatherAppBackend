@@ -28,13 +28,9 @@ Dependencies:
 
 Prerequisites: 
 
-<<<<<<< HEAD
 `1.postgreSql database`
 
-`Once you have it create application.properties file in your home directory and add following lines in it,`
-=======
-`Must have postgreSql database configured on the system, Once you have it create application.properties file and add    following lines in it,`
->>>>>>> e72cb995a3f66f5e4bbc6c69c9728b8388940f46
+`Once you have it create application.properties file and add following lines in it,`
 
 `spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect`
 
@@ -48,31 +44,19 @@ Prerequisites:
 
 Note:
 
-<<<<<<< HEAD
 `1.Create database or use existing one`
+
 `2.To create new database type following command on your postgres console`
 	`CREATE DATABASE database_name;`
+	
 `3.5432 is the default port for postgreSql`
+
 `4.postgres is the default user if you are working with default user add postgres at the username property`
+
 `5.Otherwise give proper username to this property`
+
 `6.If you have authenticated your postgeSql with password, Give valid password to the mentioned password property`
-=======
-`Create database or use existing one`
 
-`To create new database type following command on your postgres console`
-	
-	`CREATE DATABASE database_name;`
-	
-`5432 is the default port for postgreSql`
-
-`Postgres is the default user if you are working with default user add postgres at the username property`
-
-`Otherwise give proper username to this property`
-
-`If you have authenticated your postgeSql with password, Give valid password to the mentioned password property`
-
-`Copy path of your application.properties file and paste it into the WeatherApplication.java file`
->>>>>>> e72cb995a3f66f5e4bbc6c69c9728b8388940f46
 
 Installation: To run this app follow given steps,
 

@@ -28,8 +28,7 @@ Dependencies:
 
 Prerequisites: 
 
-`Must have postgreSql database configured on the system`
-`Once you have it create application.properties file and add following lines in it,`
+`Must have postgreSql database configured on the system, Once you have it create application.properties file and add    following lines in it,`
 
 `spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect`
 
@@ -46,6 +45,7 @@ Note:
 `Create database or use existing one`
 
 `To create new database type following command on your postgres console`
+	
 	`CREATE DATABASE database_name;`
 	
 `5432 is the default port for postgreSql`

@@ -36,4 +36,9 @@ public class ExceptionController {
   public ResponseEntity<Object> exception(CityAlreadyExistsException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
   }
+  
+  @ExceptionHandler(value = JwtTokenExpiredException.class)
+  public ResponseEntity<Object> exception(JwtTokenExpiredException exception) {
+    return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+  }
 }

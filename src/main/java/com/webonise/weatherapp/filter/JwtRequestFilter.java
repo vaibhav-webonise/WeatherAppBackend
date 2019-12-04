@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.webonise.weatherapp.exception.JwtTokenExpiredException;
 import com.webonise.weatherapp.util.JwtUtil;
 
 @Component
@@ -42,6 +44,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
               userDetails, null, userDetails.getAuthorities());
           usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
           SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        }
+        else {
+          throw new JwtTokenExpiredException("Token expired or invalid user need to login again");
         }
       }
     }

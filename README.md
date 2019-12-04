@@ -66,7 +66,7 @@ Installation: To run this app follow given steps,
 
  `5.Open your terminal and type following command`
 
-`java -jar {app-name}.jar --spring.config.location=classpath:/application.properties,/{path}/application.properties`
+`java -jar {app-name}.jar --spring.config.location=classpath:/application.properties,/{created-application.properties-path}/application.properties`
 	
 
 After follwing these all steps your application will be running on 

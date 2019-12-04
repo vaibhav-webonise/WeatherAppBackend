@@ -17,7 +17,7 @@ public class City extends AuditModel {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(generator = "city_generator")
-  @SequenceGenerator(name = "city_generator", sequenceName = "city_sequence", initialValue = 1000)
+  @SequenceGenerator(name = "city_generator", sequenceName = "city_sequence")
   private long id;
   private String cityname;
 

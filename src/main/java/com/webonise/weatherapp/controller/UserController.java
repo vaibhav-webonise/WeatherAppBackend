@@ -19,7 +19,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @GetMapping("/{pageno}")
+  @GetMapping("/{pageNo}")
   public List<UserData> getUsers(@PathVariable int pageNo) {
     return userService.getUsers(pageNo);
   }

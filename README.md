@@ -32,10 +32,6 @@ Prerequisites:
 
 `Once you have it create application.properties file and add following lines in it,`
 
-`spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect`
-
-`spring.jpa.hibernate.ddl-auto = update`
-
 `spring.datasource.url=jdbc:postgresql://localhost:5432/{database_name}`
 
 `spring.datasource.username={username}`

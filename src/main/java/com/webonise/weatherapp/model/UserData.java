@@ -7,12 +7,13 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class UserData extends AuditModel {
-  
+
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(generator = "user_generator")
-  @SequenceGenerator(name = "user_generator", sequenceName = "user_sequence", initialValue = 1000)
+  @SequenceGenerator(name = "user_generator", sequenceName = "user_sequence")
   private Long id;
+
   private String username;
   private String uniqueId;
 
@@ -38,5 +39,10 @@ public class UserData extends AuditModel {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "UserData [id=" + id + ", username=" + username + ", uniqueId=" + uniqueId + "]";
   }
 }

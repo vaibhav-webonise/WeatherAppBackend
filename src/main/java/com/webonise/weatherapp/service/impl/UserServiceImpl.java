@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
       return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(userData)));
     } else {
       UserData savedUser = userRepository.save(userData);
-      log.info("Userdetails saved in the database:{}", savedUser);
+      log.info("Userdetails saved in the database:{}", savedUser.toString());
       return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(savedUser)));
     }
   }

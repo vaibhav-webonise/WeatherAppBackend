@@ -9,10 +9,10 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>PostgresDemo</artifactId>
+	<groupId>com.webonise</groupId>
+	<artifactId>weather-application</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>WeatherApplication</name>
+	<name>weather-application</name>
 	<description>Weather application using Spring Boot</description>
 
 	<properties>

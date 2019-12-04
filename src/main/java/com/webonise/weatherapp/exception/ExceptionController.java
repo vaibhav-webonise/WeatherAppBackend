@@ -41,4 +41,9 @@ public class ExceptionController {
   public ResponseEntity<String> exception(JwtTokenExpiredException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
   }
+  
+  @ExceptionHandler(value = CouldNotSaveEntityException.class)
+  public ResponseEntity<String> exception(CouldNotSaveEntityException exception) {
+    return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }

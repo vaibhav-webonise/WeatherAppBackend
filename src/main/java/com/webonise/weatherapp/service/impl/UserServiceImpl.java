@@ -1,6 +1,8 @@
 package com.webonise.weatherapp.service.impl;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.webonise.weatherapp.dao.UserRepository;
+import com.webonise.weatherapp.exception.CouldNotSaveEntityException;
 import com.webonise.weatherapp.exception.NoUsersAvailableOnRequestedPageNo;
 import com.webonise.weatherapp.model.AuthenticationResponse;
 import com.webonise.weatherapp.model.UserData;
@@ -45,9 +48,13 @@ public class UserServiceImpl implements UserService {
     if (userRepository.existsByUsername(userData.getUsername())) {
       return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(userData)));
     } else {
-      UserData savedUser = userRepository.save(userData);
-      log.info("Userdetails saved in the database:{}", savedUser.toString());
-      return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(savedUser)));
+      Optional<UserData> savedUser = Optional.ofNullable(userRepository.save(userData));
+      if (savedUser.isPresent()) {
+        log.info("Userdetails saved in the database:{}", savedUser.toString());
+        return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(savedUser.get())));
+      } else {
+        throw new CouldNotSaveEntityException("There is an issue while saving user data");
+      }
     }
   }
 }

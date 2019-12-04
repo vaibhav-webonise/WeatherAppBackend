@@ -8,37 +8,37 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionController {
   @ExceptionHandler(value = ResourceNotFoundException.class)
-  public ResponseEntity<Object> exception(ResourceNotFoundException exception) {
+  public ResponseEntity<String> exception(ResourceNotFoundException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(value = UserAlreadyExistsException.class)
-  public ResponseEntity<Object> exception(UserAlreadyExistsException exception) {
+  public ResponseEntity<String> exception(UserAlreadyExistsException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
   }
 
   @ExceptionHandler(value = NoUsersAvailableOnRequestedPageNo.class)
-  public ResponseEntity<Object> exception(NoUsersAvailableOnRequestedPageNo exception) {
+  public ResponseEntity<String> exception(NoUsersAvailableOnRequestedPageNo exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(value = UserNotAvailableException.class)
-  public ResponseEntity<Object> exception(UserNotAvailableException exception) {
+  public ResponseEntity<String> exception(UserNotAvailableException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(value = NoCitiesAvailableException.class)
-  public ResponseEntity<Object> exception(NoCitiesAvailableException exception) {
+  public ResponseEntity<String> exception(NoCitiesAvailableException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
   }
-  
+
   @ExceptionHandler(value = CityAlreadyExistsException.class)
-  public ResponseEntity<Object> exception(CityAlreadyExistsException exception) {
+  public ResponseEntity<String> exception(CityAlreadyExistsException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
   }
-  
+
   @ExceptionHandler(value = JwtTokenExpiredException.class)
-  public ResponseEntity<Object> exception(JwtTokenExpiredException exception) {
+  public ResponseEntity<String> exception(JwtTokenExpiredException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
   }
 }

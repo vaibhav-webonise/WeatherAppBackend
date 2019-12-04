@@ -7,6 +7,6 @@ import com.webonise.weatherapp.model.UserData;
 @Repository
 public interface UserRepository extends JpaRepository<UserData, Long> {
 
-  public Boolean existsByUsername(String username);
-  public UserData findByUsername(String username);
+  Boolean existsByUsername(String username);
+  UserData findByUsername(String username);
 }

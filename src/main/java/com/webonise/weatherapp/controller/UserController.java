@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.webonise.weatherapp.model.AuthenticationResponse;
 import com.webonise.weatherapp.model.UserData;
 import com.webonise.weatherapp.service.UserService;
 
@@ -25,7 +26,7 @@ public class UserController {
   }
 
   @PostMapping
-  public ResponseEntity<Object> saveUser(@RequestBody UserData userData) {
+  public ResponseEntity<AuthenticationResponse> saveUser(@RequestBody UserData userData) {
     return userService.addUser(userData);
   }
 }

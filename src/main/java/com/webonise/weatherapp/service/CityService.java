@@ -10,12 +10,12 @@ public interface CityService {
    * @Param userId
    * @Return city list
    */
-  public List<City> getCitiesByUsername(String username,int pageNo);
+  List<City> getCitiesByUsername(String username,int pageNo);
   
   /*
    * This service method will save the city object in the database
    * @param userId, city object
    * @Return saved city object
    */
-  public City addCity(String username,City city);
+  City addCity(String username,City city);
 }

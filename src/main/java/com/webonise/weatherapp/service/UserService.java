@@ -2,6 +2,7 @@ package com.webonise.weatherapp.service;
 
 import java.util.List;
 import org.springframework.http.ResponseEntity;
+import com.webonise.weatherapp.model.AuthenticationResponse;
 import com.webonise.weatherapp.model.UserData;
 
 public interface UserService {
@@ -10,13 +11,13 @@ public interface UserService {
    * @Param pageNO
    * @Return user list
    */
-  public List<UserData> getUsers(int pageNo);
+  List<UserData> getUsers(int pageNo);
 
   /*
    * This service method will save the user details in the database
    * @Param userDetails object
    * @Return saved userDetails object
    */
-  public ResponseEntity<Object> addUser(UserData userData);
+  ResponseEntity<AuthenticationResponse> addUser(UserData userData);
 
 }

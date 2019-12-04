@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public ResponseEntity<Object> addUser(UserData userData) {
+  public ResponseEntity<AuthenticationResponse> addUser(UserData userData) {
     if (userRepository.existsByUsername(userData.getUsername())) {
       return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(userData)));
     } else {

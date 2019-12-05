@@ -62,11 +62,11 @@ Installation: To run this app follow given steps,
 
 `3.mvn clean install`
 
-`4.After following step no 3 target folder will be created go into that folder you will find {your-app-name}.jar file.
+`4.After following step no 3 target folder will be created go into that folder you will find {your-app-name}.jar file`
 
-`5.Open your terminal and type following command`
+ `5.Open your terminal and type following command`
 
-`java -jar {app-name}.jar --spring.config.location=classpath:/application.properties,/{path}/application.properties
+`java -jar {app-name}.jar --spring.config.location=classpath:/application.properties,/{created-application.properties-path}/application.properties`
 	
 
 After follwing these all steps your application will be running on 

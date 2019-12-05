@@ -40,7 +40,7 @@ public class ExceptionController {
 
   @ExceptionHandler(value = JwtTokenExpiredException.class)
   public ResponseEntity<ResponseData> exception(JwtTokenExpiredException exception) {
-    return new ResponseEntity<>(new ResponseData(exception.getMessage()), HttpStatus.CONFLICT);
+    return new ResponseEntity<>(new ResponseData(exception.getMessage()), HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler(value = CouldNotSaveEntityException.class)

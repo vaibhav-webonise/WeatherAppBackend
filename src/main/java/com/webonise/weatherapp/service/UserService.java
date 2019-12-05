@@ -19,5 +19,4 @@ public interface UserService {
    * @Return saved userDetails object
    */
   ResponseEntity<AuthenticationResponse> addUser(UserData userData);
-
 }

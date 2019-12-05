@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import org.springframework.stereotype.Service;
+import com.webonise.weatherapp.exception.JwtTokenExpiredException;
 import com.webonise.weatherapp.model.UserData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +34,11 @@ public class JwtUtil {
   }
 
   private Claims extractAllClaims(String token) throws JwtException {
-    return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+    try {
+      return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+    } catch (JwtException exception) {
+      throw new JwtTokenExpiredException(exception.getMessage());
+    }
   }
 
   private Boolean isTokenExpired(String token) {

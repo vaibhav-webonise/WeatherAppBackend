@@ -8,6 +8,7 @@ import com.webonise.weatherapp.model.City;
 
 @Repository
 public interface CityRepository extends JpaRepository<City, Long> {
+  
    Page<City> findByUserDataId(Long userId, Pageable pageable);
    City findByCityname(String cityName);
 }

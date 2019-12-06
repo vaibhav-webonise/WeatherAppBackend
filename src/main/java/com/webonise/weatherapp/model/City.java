@@ -12,9 +12,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class City extends AuditModel {
+public class City {
 
-  private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(generator = "city_generator")
   @SequenceGenerator(name = "city_generator", sequenceName = "city_sequence")

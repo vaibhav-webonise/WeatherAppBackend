@@ -2,6 +2,7 @@ package com.webonise.weatherapp.service;
 
 import java.util.List;
 import com.webonise.weatherapp.model.City;
+import com.webonise.weatherapp.model.UserData;
 
 public interface CityService {
   
@@ -17,5 +18,12 @@ public interface CityService {
    * @param userId, city object
    * @Return saved city object
    */
-  City addCity(String username,City city);
+  City addCity(String cityname,UserData user);
+  
+  /*
+   * This service method will delete the records by cityname
+   * @param cityname
+   * @return no of records deleted
+   */
+  long removeCities(String cityname);
 }

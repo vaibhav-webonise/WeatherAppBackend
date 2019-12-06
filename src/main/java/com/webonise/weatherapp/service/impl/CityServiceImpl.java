@@ -28,10 +28,12 @@ public class CityServiceImpl implements CityService {
   @Autowired
   @Value("${city.page.size}")
   private int pageSize;
+  private final int COUNT_ZERO = 0;
 
   @Override
   public List<City> getCitiesByUsername(String username, int pageNo) {
-    Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by("createdAt").descending());
+
+    Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by("id"));
     Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(username));
     if (userData.isPresent()) {
       Page<City> cityList = cityRepository.findByUserDataId(userData.get().getId(), pageable);
@@ -46,15 +48,30 @@ public class CityServiceImpl implements CityService {
   }
 
   @Override
-  public City addCity(String username, City city) {
-    Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(username));
+  public City addCity(String cityname, UserData userObject) {
+    Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(userObject.getUsername()));
+    if (userData.isPresent() && cityRepository.existsByCityname(cityname)) {
+      removeCities(cityname);
+    }
+    City cityObject = new City();
+    cityObject.setCityname(cityname);
     if (userData.isPresent()) {
       return (userRepository.findById(userData.get().getId())).map(user -> {
-        city.setUserData(user);
-        return cityRepository.save(city);
+        cityObject.setUserData(user);
+        return cityRepository.save(cityObject);
       }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userData.get().getId()));
     } else {
       throw new UserNotAvailableException("No user available with given username");
+    }
+  }
+
+  @Override
+  public long removeCities(String cityname) {
+    long rowsAfected = cityRepository.deleteByCityname(cityname.toLowerCase());
+    if (rowsAfected > COUNT_ZERO) {
+      return rowsAfected;
+    } else {
+      throw new NoCitiesAvailableException("No city available with given cityname");
     }
   }
 }

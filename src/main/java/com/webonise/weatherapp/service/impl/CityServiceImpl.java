@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.webonise.weatherapp.dao.CityRepository;
 import com.webonise.weatherapp.dao.UserRepository;
+import com.webonise.weatherapp.exception.CityAlreadyExistsException;
+import com.webonise.weatherapp.exception.CouldNotSaveEntityException;
 import com.webonise.weatherapp.exception.NoCitiesAvailableException;
 import com.webonise.weatherapp.exception.ResourceNotFoundException;
 import com.webonise.weatherapp.exception.UserNotAvailableException;
@@ -28,11 +30,9 @@ public class CityServiceImpl implements CityService {
   @Autowired
   @Value("${city.page.size}")
   private int pageSize;
-  private final int COUNT_ZERO = 0;
 
   @Override
   public List<City> getCitiesByUsername(String username, int pageNo) {
-
     Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by("id"));
     Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(username));
     if (userData.isPresent()) {
@@ -50,15 +50,15 @@ public class CityServiceImpl implements CityService {
   @Override
   public City addCity(String cityname, UserData userObject) {
     Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(userObject.getUsername()));
-    if (userData.isPresent() && cityRepository.existsByCityname(cityname)) {
-      removeCities(cityname);
+    if (cityRepository.existsByCitynameAndUserDataId(cityname.toLowerCase(), userData.get().getId())) {
+      throw new CityAlreadyExistsException("City is already there");
     }
-    City cityObject = new City();
-    cityObject.setCityname(cityname);
+    City city = new City();
+    city.setCityname(cityname);
     if (userData.isPresent()) {
       return (userRepository.findById(userData.get().getId())).map(user -> {
-        cityObject.setUserData(user);
-        return cityRepository.save(cityObject);
+        city.setUserData(user);
+        return cityRepository.save(city);
       }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userData.get().getId()));
     } else {
       throw new UserNotAvailableException("No user available with given username");
@@ -66,12 +66,12 @@ public class CityServiceImpl implements CityService {
   }
 
   @Override
-  public long removeCities(String cityname) {
-    long rowsAfected = cityRepository.deleteByCityname(cityname.toLowerCase());
-    if (rowsAfected > COUNT_ZERO) {
-      return rowsAfected;
+  public long removeCities(String cityname, UserData user) {
+    Optional<UserData> userData = Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
+    if (userData.isPresent()) {
+      return cityRepository.removeByCitynameAndUserDataId(cityname.toLowerCase(), userData.get().getId());
     } else {
-      throw new NoCitiesAvailableException("No city available with given cityname");
+      throw new CouldNotSaveEntityException("There is an issue while deleting an entity");
     }
   }
 }

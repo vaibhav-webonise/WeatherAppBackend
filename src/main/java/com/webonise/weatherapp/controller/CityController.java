@@ -32,7 +32,7 @@ public class CityController {
   }
 
   @DeleteMapping("/{cityname}")
-  public long removeCities(@PathVariable String cityname) {
-    return cityService.removeCities(cityname);
+  public long removeCities(@PathVariable String cityname, @RequestBody UserData user) {
+    return cityService.removeCities(cityname, user);
   }
 }

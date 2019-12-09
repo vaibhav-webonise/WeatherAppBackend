@@ -25,5 +25,5 @@ public interface CityService {
    * @param cityname
    * @return no of records deleted
    */
-  long removeCities(String cityname);
+  long removeCities(String cityname, UserData user);
 }

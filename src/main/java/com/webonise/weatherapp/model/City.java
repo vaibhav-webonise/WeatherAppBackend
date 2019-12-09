@@ -49,4 +49,9 @@ public class City {
   public void setUserData(UserData userData) {
     this.userData = userData;
   }
+
+  @Override
+  public String toString() {
+    return "City [id=" + id + ", cityname=" + cityname + ", userData=" + userData + "]";
+  }
 }

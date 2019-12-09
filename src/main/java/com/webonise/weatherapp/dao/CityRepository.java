@@ -1,7 +1,7 @@
 package com.webonise.weatherapp.dao;
 
+import java.util.List;
 import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +12,8 @@ import com.webonise.weatherapp.model.City;
 public interface CityRepository extends JpaRepository<City, Long> {
 
   @Transactional
-  long deleteByCityname(String cityname);
+  long removeByCitynameAndUserDataId(String cityname, long id);
   Page<City> findByUserDataId(Long userId, Pageable pageable);
-  Boolean existsByCityname(String cityname);
+  List<City> findByCityname(String cityname);
+  Boolean existsByCitynameAndUserDataId(String cityname, long id);
 }
